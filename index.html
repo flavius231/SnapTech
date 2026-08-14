@@ -405,7 +405,7 @@
         document.addEventListener('DOMContentLoaded', () => {
 
             // ==========================================
-            // 1. SISTEM VERIFICARE LOGIN (Varianta Avansată)
+            // 1. SISTEM VERIFICARE LOGIN 
             // ==========================================
             const token = localStorage.getItem('authToken');
             const navActions = document.querySelector('.nav-actions');
@@ -414,7 +414,7 @@
                 try {
                     const payload = JSON.parse(atob(token.split('.')[1]));
 
-                    // Luăm username-ul pe care l-am pus în token la pasul 2
+                    // Luam username-ul pe care l-am pus in token la pasul 2
                     const usernameReal = payload.username;
 
                     navActions.innerHTML = `
@@ -432,7 +432,7 @@
             }
 
             // ==========================================
-            // 2. SISTEM ANIMAȚII SCROLL
+            // 2. SISTEM ANIMATII SCROLL
             // ==========================================
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
@@ -452,11 +452,11 @@
         });
 
         // ==========================================
-        // 3. FUNCȚIA DE DECONECTARE
+        // 3. FUNCTIA DE DECONECTARE
         // ==========================================
         function logout() {
             localStorage.removeItem('authToken');
-            localStorage.removeItem('userEmail'); // Pentru siguranță, curățăm tot
+            localStorage.removeItem('userEmail'); 
             window.location.reload();
         }
 
@@ -467,11 +467,11 @@
         const slides = document.querySelectorAll('.slide');
 
         function afiseazaSlide(index) {
-            // Dacă am ajuns la ultimul slide și dăm 'Next', ne întoarcem la primul (0)
+            // Daca am ajuns la ultimul slide si dam 'Next', ne întoarcem la primul (0)
             if (index >= slides.length) {
                 indexSlideCurent = 0;
             }
-            // Dacă suntem la primul și dăm 'Prev', ne ducem la ultimul
+            // Daca suntem la primul si dam 'Prev', ne ducem la ultimul
             else if (index < 0) {
                 indexSlideCurent = slides.length - 1;
             } else {
@@ -483,33 +483,28 @@
                 slide.classList.remove('active');
             });
 
-            // Afișăm doar slide-ul curent
+            // Afisam doar slide-ul curent
             slides[indexSlideCurent].classList.add('active');
         }
 
-        // Funcția care este apelată de butoanele HTML cu parametrul 1 sau -1
+        // Functia care este apelata de butoanele HTML cu parametrul 1 sau -1
         function schimbaSlide(directie) {
             afiseazaSlide(indexSlideCurent + directie);
         }
-
-        // Opțional: Schimbare automată a slide-ului la fiecare 6 secunde
-        // setInterval(() => {
-        //     schimbaSlide(1);
-        // }, 6000);
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 // Oprim comportamentul standard (cel instant)
                 e.preventDefault();
 
-                // Identificăm secțiunea țintă
+                // Identificam sectiunea tinta
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
 
                 if (targetElement) {
-                    // Animăm scroll-ul
+                    // Animam scroll-ul
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80, // 80px este înălțimea navbar-ului tău
+                        top: targetElement.offsetTop - 80, 
                         behavior: 'smooth'
                     });
                 }
@@ -524,16 +519,16 @@
             // Deschidere card
             cards.forEach(card => {
                 card.addEventListener('click', function (e) {
-                    // Dacă ai dat click pe butonul X, ignorăm deschiderea
+                    // Daca ai dat click pe butonul X, ignoram deschiderea
                     if (e.target.closest('.close-card-btn')) return;
 
-                    // Dacă este deja deschis, nu facem nimic
+                    // Daca este deja deschis, nu facem nimic
                     if (this.classList.contains('is-expanded')) return;
 
-                    // Închidem orice alt card eventual deschis (pentru siguranță)
+                    // Inchidem orice alt card eventual deschis
                     cards.forEach(c => c.classList.remove('is-expanded'));
 
-                    // Activăm overlay-ul și mărim cardul curent
+                    // Activam overlay-ul si marim cardul curent
                     overlay.classList.add('active');
                     this.classList.add('is-expanded');
 
@@ -546,7 +541,7 @@
             const closeBtns = document.querySelectorAll('.close-card-btn');
             closeBtns.forEach(btn => {
                 btn.addEventListener('click', function (e) {
-                    e.stopPropagation(); // Oprim propagarea click-ului către card
+                    e.stopPropagation(); 
                     inchideToateCardurile();
                 });
             });
@@ -567,20 +562,19 @@
 
             cards.forEach(card => {
                 card.addEventListener('click', function () {
-                    // Dacă apeși pe cardul deja deschis, îl închide la loc
+                    // Daca apesi pe cardul deja deschis, il închide la loc
                     if (this.classList.contains('is-expanded')) {
                         this.classList.remove('is-expanded');
                         grid.classList.remove('has-expanded');
                     } else {
-                        // Dacă e altul, le strânge pe toate...
+                        
                         cards.forEach(c => c.classList.remove('is-expanded'));
 
-                        // ...și îl desface doar pe cel pe care ai dat click
                         this.classList.add('is-expanded');
-                        // Spunem grilei că un card s-a deschis (ca să le facă pe restul mici și transparente)
+                        
                         grid.classList.add('has-expanded');
 
-                        // Mic scroll fin ca să aducem cardul în centrul vizual
+                        
                         setTimeout(() => {
                             const yOffset = -100; // Spațiu pentru bara de sus
                             const y = this.getBoundingClientRect().top + window.scrollY + yOffset;

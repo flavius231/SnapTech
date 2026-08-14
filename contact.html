@@ -60,7 +60,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Funcție utilitară pentru a arăta mesajele Toast
+            // Funcție pentru a arata mesajele Toast
             function showToast(message, isError = false) {
                 const toast = document.getElementById('toastMessage');
                 toast.textContent = message;
@@ -73,14 +73,14 @@
                 
                 toast.classList.add('show');
                 
-                // Ascunde mesajul după 4 secunde
+                // Ascunde mesajul dupa 4 secunde
                 setTimeout(() => {
                     toast.classList.remove('show');
                 }, 4000);
             }
 
             // ==========================================
-            // 1. VERIFICARE LOGIN ȘI AUTO-COMPLETARE EMAIL
+            // 1. VERIFICARE LOGIN SI AUTO-COMPLETARE EMAIL
             // ==========================================
             const token = localStorage.getItem('authToken');
             const emailInput = document.getElementById('contactEmail');
@@ -91,7 +91,7 @@
                     if (payload.email) {
                         emailInput.value = payload.email;
                         emailInput.readOnly = true; 
-                        // Aplicăm un stil distinct pentru a semnala că nu poate fi modificat
+                        // Aplic un stil distinct pentru a semnala ca nu poate fi modificat
                         emailInput.style.backgroundColor = "#e0e0e0"; 
                         emailInput.style.color = "#777777";
                         emailInput.style.cursor = "not-allowed";
@@ -101,13 +101,13 @@
                 }
             }
 
-            // Efect visual pe textarea la focus (ca să se potrivească cu input-urile din CSS)
+            // Efect visual pe textarea la focus
             const textarea = document.getElementById('contactDetalii');
             textarea.addEventListener('focus', () => textarea.style.backgroundColor = '#e8e8e8');
             textarea.addEventListener('blur', () => textarea.style.backgroundColor = '#f0f0f0');
 
             // ==========================================
-            // 2. TRIMITEREA FORMULARULUI CĂTRE SERVER
+            // 2. TRIMITEREA FORMULARULUI CATRE SERVER
             // ==========================================
             document.getElementById('programareForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -132,7 +132,7 @@
                     const raspuns = await response.json();
 
                     if (response.ok) {
-                        showToast('Programarea a fost înregistrată cu succes!'); // Folosim noul tău sistem de toast
+                        showToast('Programarea a fost înregistrată cu succes!'); 
                         
                         if (!emailInput.readOnly) {
                             document.getElementById('programareForm').reset();

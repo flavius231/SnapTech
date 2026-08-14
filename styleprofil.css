@@ -1,6 +1,4 @@
-/* ========================================= */
-/* RESETARE GENERALĂ                         */
-/* ========================================= */
+
 * { 
     margin: 0; 
     padding: 0; 
@@ -10,7 +8,7 @@
 
 body { 
     background-color: #fcfbfa; 
-    /* Am scos setările de centrare ca navbar-ul să stea sus! */
+   
 }
 
 /* ========================================= */
@@ -106,15 +104,13 @@ body {
     border-color: #855525
 }
 
-/*ANIMATIE DE SCROLL
-/* Starea inițială (elementul este transparent și lăsat mai jos) */
+/*ANIMATIE DE SCROLL*/
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(40px); /* Împins cu 40px mai jos */
+    transform: translateY(40px); 
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* Starea finală (elementul apare și revine la poziția originală) */
 .animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);

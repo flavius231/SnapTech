@@ -69,7 +69,7 @@
 
     <script>
         // ==========================================
-        // 1. ANIMAȚIILE PENTRU SWITCH (CODUL TĂU)
+        // 1. ANIMATIILE PENTRU SWITCH
         // ==========================================
         let wrapper = document.querySelector('.wrapper'),
             signUpLink = document.querySelector('.link .signup-link'),
@@ -86,10 +86,10 @@
         });
 
         // ==========================================
-        // 2. CONEXIUNEA CU SERVERUL (SIGN UP)
+        // 2. CONEXIUNEA CU SERVERUL(SIGN UP)
         // ==========================================
         document.getElementById('signupForm').addEventListener('submit', async (e) => {
-            e.preventDefault(); // Oprește reîncărcarea paginii
+            e.preventDefault(); 
 
             // 1. AICI EXTRAGEM USERNAME-UL DIN HTML:
             const username = document.getElementById('signupUsername').value;
@@ -97,10 +97,10 @@
             const parola = document.getElementById('signupPassword').value;
             const confirmare = document.getElementById('confirmPassword').value;
 
-            // Verificare frontend: Parolele sunt identice?
+            // Verificare frontend
             if (parola !== confirmare) {
                 alert('Parolele nu se potrivesc!');
-                return; // Oprește execuția
+                return; // Opreste executia
             }
 
             try {
@@ -116,8 +116,8 @@
 
                 if (response.ok) {
                     alert(data.message); // Cont creat cu succes!
-                    document.getElementById('signupForm').reset(); // Curățăm formularul
-                    signInLink.click(); // Îl trimitem automat pe panoul de Login
+                    document.getElementById('signupForm').reset(); // Curatam formularul
+                    signInLink.click(); // Il trimitem automat pe panoul de Login
                 } else {
                     alert(data.message); // Ex: Email deja existent
                 }
@@ -128,7 +128,7 @@
         });
 
         // ==========================================
-        // 3. CONEXIUNEA CU SERVERUL (LOGIN)
+        // 3. CONEXIUNEA CU SERVERUL(LOGIN)
         // ==========================================
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -146,13 +146,13 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Logare reușită! Salvăm biletul de acces (token) în memoria browserului
+                    // Logare reusita!
                     localStorage.setItem('authToken', data.token);
 
                     // Îl redirecționăm către pagina principală cu formularul de programare
                     window.location.href = 'index.html';
                 } else {
-                    alert(data.message); // Ex: Email sau parolă incorecte
+                    alert(data.message); // Ex: Email sau parola incorecte
                 }
             } catch (error) {
                 console.error(error);
@@ -161,7 +161,7 @@
         });
 
         if (response.ok) {
-            // Salvăm token-ul și email-ul în memoria browserului
+            // Salvam token-ul si email-ul în memoria browserului
             localStorage.setItem('authToken', data.token);
             localStorage.setItem('userEmail', data.email);
 

@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // ==========================================
-// 1. CONFIGURĂRI CREDENȚIALE (Securizate)
+// 1. CONFIGURARI CREDENTIALE (Securizate)
 // ==========================================
 const dbConfig = {
     host: process.env.DB_HOST,
@@ -31,22 +31,22 @@ const transporter = nodemailer.createTransport({
 });
 
 // ==========================================
-// FUNCȚIA PENTRU TEXTUL EMAIL-URILOR
+// FUNCTIA PENTRU TEXTUL EMAIL-URILOR
 // ==========================================
 function getMailContent(tipEveniment, dataEveniment, isReminder = false) {
-    // Formatăm data ca să arate bine (ex: "joi, 15 iunie 2026, 14:30")
+    // Formatare
     const dataFormatata = new Date(dataEveniment).toLocaleString('ro-RO', {
         weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
 
     if (isReminder) {
-        // Textul pentru reamintire (dacă botul tău e setat să trimită și remindere)
+        // Textul pentru reamintire 
         return {
             subiect: `🔔 Reminder Conferință: ${tipEveniment}`,
             mesaj: `Salut!\n\nÎți reamintim că ai o programare stabilită pentru mâine: ${dataFormatata}, pentru serviciul de "${tipEveniment}".\n\nTe așteptăm cu drag!`
         };
     } else {
-        // Textul pentru confirmarea imediată (la apăsarea butonului pe site)
+        // Textul pentru confirmarea imediata
         return {
             subiect: `✅ Confirmare Programare: ${tipEveniment}`,
             mesaj: `Salut!\n\nProgramarea ta pentru "${tipEveniment}" a fost înregistrată cu succes în sistemul nostru.\n\nConferința este stabilită pentru: ${dataFormatata}.\nUn consultant te va contacta în scurt timp cu detaliile de conectare și pașii următori.\n\nO zi excelentă!`
@@ -57,17 +57,16 @@ function getMailContent(tipEveniment, dataEveniment, isReminder = false) {
 // 2. LOGICA SERVERULUI
 // ==========================================
 app.post('/programare-noua', async (req, res) => {
-    // 1. AICI ERA PROBLEMA: Sincronizăm exact numele trimise de frontend!
     const emailClient = req.body.email;
     const dataEveniment = req.body.data_eveniment;
-    const tipEveniment = req.body.serviciu; // Frontend-ul trimite 'serviciu' acum
-    const detaliiSuplimentare = req.body.detaliiSuplimentare; // Am adăugat extragerea detaliilor
+    const tipEveniment = req.body.serviciu; 
+    const detaliiSuplimentare = req.body.detaliiSuplimentare; 
 
     let connection;
     try {
         connection = await mysql.createConnection(dbConfig);
 
-        // 2. Verificarea ta de suprapunere (30 min)
+        //Verificarea de suprapunere (30 min)
         const checkSql = `
             SELECT id 
             FROM programari 
@@ -82,14 +81,14 @@ app.post('/programare-noua', async (req, res) => {
             });
         }
 
-        // 3. SALVAREA DATELOR (Actualizată cu coloana detalii_suplimentare)
+        //  (Actualizată cu coloana detalii_suplimentare)
         const sql = 'INSERT INTO programari (email_destinatar, tip_eveniment, data_actiune, notificare_trimisa, detalii_suplimentare) VALUES (?, ?, ?, 0, ?)';
         const [result] = await connection.execute(sql, [emailClient, tipEveniment, dataEveniment, detaliiSuplimentare]);
         const idNou = result.insertId;
 
         res.status(200).json({ success: true, message: 'Programare salvată!' });
 
-        // 4. Sistemul tău de trimitere mail automat
+        // Sistemul de trimitere mail automat
         const dataCurenta = new Date();
         const dataProg = new Date(dataEveniment);
         const diferentaTimp = dataProg.getTime() - dataCurenta.getTime();
@@ -153,7 +152,7 @@ app.listen(3000, () => {
 });
 
 // ==========================================
-// RUTA DE SIGNUP (CREARE CONT)
+// RUTA DE SIGNUP(CREARE CONT)
 // ==========================================
 app.post('/signup', async (req, res) => {
     const { email, parola, username } = req.body;
@@ -162,23 +161,23 @@ app.post('/signup', async (req, res) => {
     try {
         connection = await mysql.createConnection(dbConfig);
         
-        // 1. Verificăm dacă email-ul există deja
+        //Verificam daca email-ul exista deja
         const [existingEmail] = await connection.execute('SELECT id FROM utilizatori WHERE email = ?', [email]);
         if (existingEmail.length > 0) {
             return res.status(400).json({ success: false, message: 'Acest email este deja înregistrat!' });
         }
 
-        // 2. VERIFICARE NOUĂ: Există deja acest username?
+        //Există deja acest username?
         const [existingUsername] = await connection.execute('SELECT id FROM utilizatori WHERE nume_utilizator = ?', [username]);
         if (existingUsername.length > 0) {
             return res.status(400).json({ success: false, message: 'Acest username este deja luat. Te rugăm să alegi altul!' });
         }
 
-        // 3. Securitate: Criptăm parola
+        //Criptam parola
         const saltRounds = 10;
         const parolaHash = await bcrypt.hash(parola, saltRounds);
 
-        // 4. Salvăm noul utilizator
+        //Salvam noul utilizator
         await connection.execute('INSERT INTO utilizatori (email, parola_hash, nume_utilizator) VALUES (?, ?, ?)', [email, parolaHash, username]);
         
         res.status(201).json({ success: true, message: 'Cont creat cu succes!' });
@@ -191,7 +190,7 @@ app.post('/signup', async (req, res) => {
 });
 
 // ==========================================
-// RUTA DE LOGIN (AUTENTIFICARE)
+// RUTA DE LOGIN(AUTENTIFICARE)
 // ==========================================
 app.post('/login', async (req, res) => {
     const { email, parola } = req.body;
@@ -200,7 +199,7 @@ app.post('/login', async (req, res) => {
     try {
         connection = await mysql.createConnection(dbConfig);
 
-        // 1. Căutăm utilizatorul în baza de date
+        //Cautam utilizatorul in baza de date
         const [users] = await connection.execute('SELECT * FROM utilizatori WHERE email = ?', [email]);
         if (users.length === 0) {
             return res.status(400).json({ success: false, message: 'Email sau parolă incorecte.' });
@@ -208,14 +207,13 @@ app.post('/login', async (req, res) => {
 
         const utilizator = users[0];
 
-        // 2. Securitate: Comparăm parola introdusă cu hash-ul salvat
+        //Comparam parola introdusa cu hash-ul salvat
         const parolaCorecta = await bcrypt.compare(parola, utilizator.parola_hash);
         if (!parolaCorecta) {
             return res.status(400).json({ success: false, message: 'Email sau parolă incorecte.' });
         }
 
-        // 3. Generăm token-ul de sesiune (valabil 24h)
-       // Căutăm linia cu jwt.sign și o înlocuim cu aceasta:
+        //Generam token-ul de sesiune (valabil 24h)
 const token = jwt.sign(
     { id: utilizator.id, email: utilizator.email, username: utilizator.nume_utilizator }, 
     'cheia_mea_super_secreta', 
@@ -231,7 +229,7 @@ const token = jwt.sign(
 });
 
 // ==========================================
-// RUTA: EXTRAGERE ISTORIC PROGRAMĂRI CLIENT
+// RUTA: EXTRAGERE ISTORIC PROGRAMARI CLIENT
 // ==========================================
 app.post('/istoric-programari', async (req, res) => {
     const emailClient = req.body.email;
@@ -244,7 +242,7 @@ app.post('/istoric-programari', async (req, res) => {
     try {
         connection = await mysql.createConnection(dbConfig);
 
-        // Extragem programările ordonate de la cea mai recentă la cea mai veche
+        // Extragem programarile ordonate de la cea mai recenta la cea mai veche
         const sqlQuery = `
             SELECT tip_eveniment, data_actiune, detalii_suplimentare 
             FROM programari 
@@ -254,7 +252,7 @@ app.post('/istoric-programari', async (req, res) => {
         
         const [rows] = await connection.execute(sqlQuery, [emailClient]);
 
-        // Trimitem lista de programări înapoi la frontend
+        // Trimitem lista de programari înapoi la frontend
         res.status(200).json({ success: true, programari: rows });
     } catch (error) {
         console.error('Eroare la extragerea istoricului:', error);

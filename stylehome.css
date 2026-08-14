@@ -1,6 +1,4 @@
-/* ========================================= */
-/* RESETARE GENERALĂ                         */
-/* ========================================= */
+
 * { 
     margin: 0; 
     padding: 0; 
@@ -10,12 +8,11 @@
 
 body { 
     background-color: #fcfbfa; 
-    /* Am scos setările de centrare ca navbar-ul să stea sus! */
     padding-top: 80px;
 }
 
 /* ========================================= */
-/* BARA DE NAVIGARE                          */
+/* BARA DE NAVIGARE  */
 /* ========================================= */
 .main-header {
     width: 100%;
@@ -38,9 +35,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 9999; /* Foarte important pentru a sta DEASUPRA tuturor secțiunilor */
-    
-    /* Păstrează restul setărilor tale de fundal, padding etc. */
+    z-index: 9999; 
     background-color: #ffffff;
 
 }
@@ -117,15 +112,13 @@ body {
     border-color: #855525
 }
 
-/*ANIMATIE DE SCROLL
-/* Starea inițială (elementul este transparent și lăsat mai jos) */
+/*ANIMATIE DE SCROLL */
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(40px); /* Împins cu 40px mai jos */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* Starea finală (elementul apare și revine la poziția originală) */
 .animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
@@ -137,7 +130,7 @@ body {
    ========================================== */
 .services-hero {
     width: 100%;
-    height: 75vh; /* Ocupă fix 75% din înălțimea ecranului */
+    height: 75vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -149,7 +142,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 1200px;
-    height: 80%; /* Ocupă 80% din cei 75vh */
+    height: 80%; 
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
@@ -170,10 +163,9 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 40px 100px; /* Spațiu pentru a nu atinge săgețile */
+    padding: 40px 100px; 
 }
 
-/* Clasa care face slide-ul curent vizibil */
 .slide.active {
     opacity: 1;
     visibility: visible;
@@ -192,7 +184,7 @@ body {
 
 .slide-icon {
     font-size: 60px;
-    color: #855525; /* Culoarea ta principală */
+    color: #855525; 
     margin-bottom: 25px;
 }
 
@@ -227,7 +219,6 @@ body {
     transform: translateY(-3px);
 }
 
-/* Săgețile stânga-dreapta */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -253,7 +244,6 @@ body {
 .prev-btn { left: 30px; }
 .next-btn { right: 30px; }
 
-/* Responsivitate pentru telefoane */
 @media (max-width: 768px) {
     .slide { padding: 40px 30px; }
     .slide-content h2 { font-size: 28px; }
@@ -263,24 +253,21 @@ body {
 }
 
 
-/* Containerul care ține toate cele 5 servicii */
+
 .services-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 35px; /* Am mărit spațiul dintre carduri (era 25px) */
+    gap: 35px; 
     padding: 80px 20px;
-    max-width: 1400px; /* Am lărgit containerul principal */
+    max-width: 1400px; 
     margin: 0 auto;
 }
 
-/* Stilizarea dreptunghiurilor (cardurilor) - DIMENSIUNI MĂRITE */
-/* ACTUALIZARE pentru clasa existentă */
 .service-card {
     position: relative; 
     background-color: #ffffff;
     width: 360px;
-    /* Am mărit ultimul număr (padding-bottom) la 70px pentru a face loc prețului */
     padding: 40px 30px 70px 30px; 
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
@@ -290,23 +277,20 @@ body {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Restul claselor tale (hover, h3, p, @keyframes) rămân neschimbate */
 
-/* NOU: Stilizarea prețului în dreapta jos */
 .price-tag {
     position: absolute;
-    bottom: 25px; /* Distanța față de marginea de jos */
-    right: 30px; /* Distanța față de marginea din dreapta */
+    bottom: 25px; 
+    right: 30px; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
     font-weight: bold;
-    color: #1a1a1a; /* Poți schimba în albastru (#007BFF) dacă vrei să iasă mai mult în evidență */
-    background-color: #f4f4f4; /* Un fundal gri foarte deschis */
+    color: #1a1a1a; 
+    background-color: #f4f4f4; 
     padding: 5px 12px;
     border-radius: 6px;
 }
 
-/* NOU: Stilizarea textului cu steluță */
 .price-disclaimer {
     width: 100%;
     text-align: center;
@@ -317,7 +301,6 @@ body {
     font-style: italic;
 }   
 
-/* Efect interactiv la trecerea cu mouse-ul (hover) */
 /* Efect interactiv accentuat la trecerea cu mouse-ul (hover) */
 .service-card:hover {
     transform: translateY(-10px) ; 
@@ -327,7 +310,7 @@ body {
 /* Titlul serviciului */
 .service-card h3 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 22px; /* Text mai mare pentru titlu (era 18px) */
+    font-size: 22px; 
     color: #222222;
     margin-top: 0;
     margin-bottom: 18px;
@@ -336,28 +319,28 @@ body {
 /* Descrierea serviciului */
 .service-card p {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px; /* Text mai mare și mai lizibil (era 14px) */
+    font-size: 16px; 
     color: #555555;
-    line-height: 1.7; /* Spațiere mai mare între rânduri */
+    line-height: 1.7; 
     margin: 0;
 }
 
 /* ------------------------------------------- */
-/* DEFINIREA ANIMAȚIEI DE JOS ÎN SUS           */
+/* DEFINIREA ANIMAȚIEI DE JOS IN SUS           */
 /* ------------------------------------------- */
 @keyframes fadeUp {
     0% {
         opacity: 0;
-        top: 50px; /* Dreptunghiul pornește de la 50px mai jos */
+        top: 50px; 
     }
     100% {
         opacity: 1;
-        top: 0; /* Ajunge în poziția lui normală */
+        top: 0; 
     }
 }
 
 /* ------------------------------------------- */
-/* SETAREA ÎNTÂRZIERILOR (Efectul de cascadă)  */
+/* SETAREA INTARZIERILOR   */
 /* ------------------------------------------- */
 .delay-1 { animation-delay: 0.1s; }
 .delay-2 { animation-delay: 0.3s; }
@@ -368,7 +351,7 @@ body {
 
 
 /* ==========================================
-   STILIZARE SECȚIUNE DE CE SNAPTECH
+   STILIZARE SECTIUNE DE CE SNAPTECH
    ========================================== */
 .snaptech-container {
     max-width: 1200px;
@@ -391,7 +374,7 @@ body {
 }
 
 .text-accent {
-    color: #855525; /* Accentul tău de brand */
+    color: #855525; 
     position: relative;
     display: inline-block;
 }
@@ -403,7 +386,7 @@ body {
     left: 0;
     width: 100%;
     height: 8px;
-    background-color: rgba(133, 85, 37, 0.2); /* O subliniere subtilă */
+    background-color: rgba(133, 85, 37, 0.2);
     z-index: -1;
 }
 
@@ -413,7 +396,6 @@ body {
     line-height: 1.6;
 }
 
-/* Grila Bento */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -436,10 +418,10 @@ body {
 }
 
 .card-wide {
-    grid-column: span 2; /* Face cardul să ocupe 2 coloane */
+    grid-column: span 2; 
 }
 
-/* Efectul de Inovație: Lumina invizibilă la hover */
+
 .card-glow {
     position: absolute;
     top: -50%;
@@ -456,7 +438,7 @@ body {
 
 .bento-card:hover {
     transform: translateY(-5px);
-    border-color: #855525; /* Chenarul prinde culoarea brandului */
+    border-color: #855525; 
     box-shadow: 0 20px 40px rgba(133, 85, 37, 0.1);
 }
 
@@ -465,7 +447,7 @@ body {
     transform: scale(1);
 }
 
-/* Conținutul Cardurilor */
+/* Continutul Cardurilor */
 .bento-icon {
     font-size: 36px;
     color: #855525;
@@ -491,7 +473,6 @@ body {
     z-index: 1;
 }
 
-/* Responsivitate pentru Telefoane și Tablete */
 @media (max-width: 992px) {
     .bento-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -518,11 +499,9 @@ body {
    ========================================== */
 .bento-card {
     cursor: pointer;
-    /* Adăugăm astea pe lângă ce aveai deja la .bento-card */
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Textul mic de jos care te invită să dai click */
 .click-to-expand {
     margin-top: auto;
     padding-top: 20px;
@@ -537,7 +516,6 @@ body {
     opacity: 1;
 }
 
-/* Secțiunea detaliată (Ascunsă inițial) */
 .card-details {
     display: none;
     margin-top: 20px;
@@ -593,7 +571,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    align-items: start; /* Foarte important pentru a nu trage celelalte carduri în jos */
+    align-items: start; 
     transition: all 0.5s ease;
 }
 
@@ -612,10 +590,7 @@ body {
     grid-column: span 2;
 }
 
-/* ==========================================
-   EFECTUL ASUPRA CARDURILOR SECUNDARE 
-   (Când un alt card este deschis)
-   ========================================== */
+
 .bento-grid.has-expanded .bento-card:not(.is-expanded) {
     transform: scale(0.95); /* Se fac puțin mai mici */
     opacity: 0.5; /* Se estompează */
@@ -623,23 +598,20 @@ body {
 }
 
 /* ==========================================
-   CARDUL ACTIV (Cel mărit)
+   CARDUL ACTIV (Cel marit)
    ========================================== */
 .bento-card.is-expanded {
-    grid-column: 1 / -1 !important; /* Forțează cardul să ocupe tot rândul de la stânga la dreapta */
+    grid-column: 1 / -1 !important;
     border-color: #855525;
     box-shadow: 0 15px 35px rgba(133, 85, 37, 0.15);
-    transform: scale(1.02); /* Iese subtil în evidență */
+    transform: scale(1.02); 
     z-index: 10;
 }
 
-/* Ascundem textul "Apasă" când cardul e deschis */
 .bento-card.is-expanded .click-to-expand {
     display: none;
 }
-/* ==========================================
-   ANIMAȚIA FLUIDĂ A TEXTULUI DETALIAT (CSS Grid Hack)
-   ========================================== */
+
 .card-details-wrapper {
     display: grid;
     grid-template-rows: 0fr;
@@ -649,10 +621,10 @@ body {
 
 .bento-card.is-expanded .card-details-wrapper {
     grid-template-rows: 1fr;
-    margin-top: 25px; /* Adaugă spațiu doar când se deschide */
+    margin-top: 25px; 
 }
 
-/* Interiorul ascuns care deține textul */
+
 .card-details-inner {
     overflow: hidden;
     opacity: 0;
@@ -660,11 +632,10 @@ body {
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Când se extinde, textul devine vizibil și coboară fin */
 .bento-card.is-expanded .card-details-inner {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.2s; /* Așteaptă 0.2s să înceapă să se deschidă caseta înainte să arate textul */
+    transition-delay: 0.2s; 
 }
 
 .card-details-inner hr {
@@ -706,7 +677,7 @@ body {
 }
 
 /* ==========================================
-   STILIZARE SECȚIUNE PREȚURI
+   STILIZARE SECTIUNE PRETURI
    ========================================== */
 .preturi-container {
     max-width: 1200px;
@@ -714,36 +685,33 @@ body {
     padding: 0 20px;
 }
 
-
-
-
 /* ==========================================
    STILIZARE FOOTER
    ========================================== */
 .site-footer {
     width: 100%;
-    background-color: #fcfbfa; /* Aceeași nuanță de fundal ca restul site-ului */
+    background-color: #fcfbfa; 
     padding: 20px;
-    margin-top: 80px; /* Lasă spațiu față de ultima secțiune de sus */
+    margin-top: 80px; 
 }
 
 .footer-container {
     max-width: 1400px;
     margin: 0 auto;
-    border-top: 1px solid #dcdcdc; /* Linia de separare din imagine */
+    border-top: 1px solid #dcdcdc; 
     padding-top: 30px;
     padding-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Ajută elementele să se mute pe rândul următor pe ecrane mici */
+    flex-wrap: wrap; 
 }
 
 /* Textul din Stânga */
 .footer-brand span {
     font-size: 22px;
     font-weight: 800;
-    color: #001f3f; /* Un albastru foarte închis, aproape negru */
+    color: #001f3f; 
 }
 
 /* Textul din Mijloc */
@@ -768,24 +736,22 @@ body {
     height: 42px;
     background-color: #ffffff;
     color: #111111;
-    border-radius: 50%; /* Le face perfect rotunde */
+    border-radius: 50%; 
     text-decoration: none;
     font-size: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Umbra subtilă din imagine */
-    transition: all 0.3s ease; /* Face trecerea culorii fluidă, nu bruscă */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+    transition: all 0.3s ease; 
 }
 
 /* Efectul de Hover (Roșu) */
 .social-icon:hover {
     background-color: #855525;
-    color: #ffffff; /* Iconița devine albă */
-    transform: translateY(-3px); /* Se ridică puțin când pui mouse-ul pe ele */
-    box-shadow: 0 6px 20px rgba(217, 48, 37, 0.3); /* Umbra devine și ea roșiatică */
+    color: #ffffff; 
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(217, 48, 37, 0.3); 
 }
 
-/* ==========================================
-   RESPONSIVITATE (Pentru telefoane)
-   ========================================== */
+
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
@@ -826,7 +792,7 @@ body {
 }
 
 .filtru-btn.activ {
-    background-color: #855525; /* Culoarea brandului */
+    background-color: #855525; 
     color: #ffffff;
     box-shadow: 0 5px 15px rgba(133, 85, 37, 0.3);
 }
@@ -870,7 +836,7 @@ body {
 .tag-algoritmi { background-color: #e8f0fe; color: #1a73e8; }
 .tag-infrastructura { background-color: #e6f4ea; color: #1e8e3e; }
 
-/* Titlu și Text */
+/* Titlu si Text */
 .resursa-card h3 {
     font-size: 22px;
     color: #222;
@@ -883,10 +849,10 @@ body {
     color: #666;
     line-height: 1.7;
     margin-bottom: 25px;
-    flex-grow: 1; /* Împinge link-ul în partea de jos a cardului */
+    flex-grow: 1; 
 }
 
-/* Link-ul către articol */
+/* Link-ul catre articol */
 .resursa-link {
     font-weight: 700;
     color: #855525;
@@ -907,32 +873,29 @@ body {
 }
 
 .resursa-card:hover .resursa-link i {
-    transform: translateX(5px); /* Săgeata se mișcă spre dreapta la hover */
+    transform: translateX(5px); 
 }
-
-/* Clasa ascunsă pentru filtrarea JavaScript */
 .resursa-ascunsa {
     display: none !important;
 }
 /* ==========================================
-   STILIZARE CINE SUNTEM (Minimalism + Imagine Fundal)
+   STILIZARE CINE SUNTEM 
    ========================================== */
 
 .about-minimal-section {
-    position: relative; /* Obligatoriu pentru a ține overlay-ul la locul lui */
+    position: relative; 
     padding: 120px 20px;
     border-top: 1px solid #eaeaea; 
     border-bottom: 1px solid #eaeaea;
     z-index: 1;
     
-    /* Setările pentru imaginea de fundal */
+   
     background-image: url('snapimg.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Creează acel efect premium de parallax la scroll */
+    background-attachment: fixed; 
 }
 
-/* Stratul semi-transparent (Overlay) pus PESTE imagine, dar SUB text */
 .about-minimal-section::before {
     content: "";
     position: absolute;
@@ -940,7 +903,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Un strat alb cu opacitate de 85%. Dacă vrei să se vadă imaginea mai tare, scade la 0.70 sau 0.60 */
     background-color: rgba(255, 255, 255, 0.7); 
     z-index: -1; 
 }
@@ -955,7 +917,7 @@ body {
 
 /* Partea Stângă */
 .about-title-side {
-    flex: 0 0 35%; /* Ocupă 35% din lățime */
+    flex: 0 0 35%; 
 }
 
 .eyebrow-text {
@@ -971,18 +933,18 @@ body {
 
 .massive-title {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 80px; /* Titlu uriaș */
+    font-size: 80px; 
     font-weight: 900;
     line-height: 1;
     color: #111111;
     margin: 0;
-    letter-spacing: -2px; /* Literele mai strânse arată mai premium */
+    letter-spacing: -2px; 
 }
 
 /* Partea Dreaptă */
 .about-content-side {
     flex: 1;
-    padding-top: 20px; /* Aliniază textul frumos cu titlul */
+    padding-top: 20px; 
 }
 
 .lead-text {
@@ -1063,6 +1025,6 @@ body {
     }
     
     .stat-divider {
-        display: none; /* Ascundem liniile pe mobil */
+        display: none; 
     }
 }
